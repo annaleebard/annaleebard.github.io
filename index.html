@@ -1,76 +1,87 @@
 <!DOCTYPE HTML>
 <html>
-<head>
-    
-<meta charset="utf-8">
-<title>ALEB Portfolio </title>
 
-<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css" />    
-   <link href='http://fonts.googleapis.com/css?family=Roboto:500' rel='stylesheet' type='text/css'>
+<head>
+
+    <meta charset="utf-8">
+    <title>ALEB Portfolio </title>
+
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css" />
+    <link href='http://fonts.googleapis.com/css?family=Roboto:500' rel='stylesheet' type='text/css'>
     <style>
-        
-     body {  
-         background: #f5f5f5;   
-         font-family: 'Roboto', sans-serif;
+        body {
+            background: #f5f5f5;
+            font-family: 'Roboto', sans-serif;
         }
-    header { 
+        
+        header {
             width: 100%;
             min-width: 800px;
             margin: 0 auto;
             background: black;
             padding: 15px 0 20px;
         }
-    h1 { 
-       font-family: 'Roboto', sans-serif;
-        color: #375671; 
-        width: 80%;
-        margin: 0 auto;
-        color: whitesmoke;
-    }
-    h2 { 
-        font-family: 'Roboto', sans-serif;
-        color: #375671;
-        width: 80%;
-        margin: 0 auto;
-        color: whitesmoke;
-    }
+        
+        h1 {
+            font-family: 'Roboto', sans-serif;
+            color: #375671;
+            width: 80%;
+            margin: 0 auto;
+            color: whitesmoke;
+        }
+        
+        h2 {
+            font-family: 'Roboto', sans-serif;
+            color: #375671;
+            width: 80%;
+            margin: 0 auto;
+            color: whitesmoke;
+        }
+        
         h3 {
-        font-family: Dosis, sans-serif;
-        color: #003d71
-    }
-    p { 
-        font-size: .9em; 
-        color: #375671; 
-    }
-    ul {
-        list-style-type: none; 
-        font-size: .9em; 
-        color: #375671; 
-        line-height: 1.6em;
-    }
-    a, a:visited {   
-        color: #003d71;
-    }
+            font-family: Dosis, sans-serif;
+            color: #003d71
+        }
+        
+        p {
+            font-size: .9em;
+            color: #375671;
+        }
+        
+        ul {
+            list-style-type: none;
+            font-size: .9em;
+            color: #375671;
+            line-height: 1.6em;
+        }
+        
+        a,
+        a:visited {
+            color: #003d71;
+        }
+        
         .project {
-        width: 80%;
-        min-width: 800px;
-        height: 100%;
-        margin: 35px auto;
-    }
-    .project:after{
-        content: "";
-        display: table;
-        clear: both; 
-    }
-    .project-image {
-        width: 388px;
-        height: 240px;
-        background: white;
-        float: left;
-        margin-right: 20px;
-        border: 2px solid #dddddd;
-    }
+            width: 80%;
+            min-width: 800px;
+            height: 100%;
+            margin: 35px auto;
+        }
+        
+        .project:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+        
+        .project-image {
+            width: 388px;
+            height: 240px;
+            background: white;
+            float: left;
+            margin-right: 20px;
+            border: 2px solid #dddddd;
+        }
     </style>
 
 
@@ -78,78 +89,128 @@
 </head>
 
 <body>
-    
+
     <header>
-    <h1>Geo 709 Advanced GIS</h1>
+        <h1>Geo 709 Advanced GIS</h1>
         <h2> Web Mapping at the University of Kentucky</h2>
     </header>
+
+
+    <section class="project">
+
+        <a target="_blank" href=KY-finalproject>
+            <image src="images/kymaphex.png" alt="All Things Kentucky" class="project-image" />
+        </a>
+        <h3><a target="_blank" href=KY-finalproject>All Things Kentucky! </a></h3>
+
+        <p> This map uses geocoded tweets to visualize location of Kentucky related social media activity.</p>
+        <p> </p>
+
+        <ul>
+            <li>See the map: <a href=KY-finalproject>All Things Kentucky</a>
+            </li>
+            <li>Data Source: <a href="https://twitter.com/mattzook/status/567484025884119042">Kentucky State Geographer: Matthew Zook </a>
+            </li>
+            <li>See the <a href="https://github.com/annaleebard/KY-finalproject/blob/master/index.html">code for this map hosted on GitHub</a>
+            </li>
+        </ul>
+    </section>
+    
     
     
 
-    
-     <section class = "project">
-         
-        <a target="_blank" href="us-unemployment/"><image src="images/us.unemployment.png" alt="US unemployment map" class="project-image" /></a>
-        <h3><a target="_blank" href="us-unemployment/">US Unemployment Rates: 2001 &ndash; 2013</a></h3>
-       
-         
-        <p> This choropleth map shows unemployment rates in the United States for years ranging 2001 to 2013.</p>
-        <p>Click and drag time slider to select unemployment rates from the range of years.</p>
-      
-         <ul> 
-            <li>See the map: <a href="us-unemployment/">US Unemployment Rates</a></li>
-            <li>Data Source: <a href="http://www.bls.gov/data/">Bureau of Labor Statistics</a></li>
-            <li>See the <a href="https://github.com/annaleebard/geo409/blob/master/map-04/index.html">code for this map hosted on GitHub</a></li>
-        </ul>
-         
-        </section> 
+      <section class="project">
 
-    
-    <section class = "project">
-         
-         <a target="_blank" href="ky-unemployment/"><image src="images/ky.unemployment.png" alt="KY unemployment map"class="project-image" /></a>
-        <h3><a target="_blank" href="ky-unemployment/">Kentucky Unemployment Rates: 2000 &ndash; 2013</a></h3>
-        
-        <p> This choropleth map shows unemployment rates in the Commonwealth of Kentucky by county for years ranging 2000 to 2013.</p>
-        <p>Click and drag time slider to select unemployment rates from the range of years. Click on a county to display county name and unemployment rate for selected year. Hover over a Kentucky county to display infobox containing unemployment rates of selcected count from 2000 to 2013.</p>
-        
-        <ul> 
-            <li>See the map: <a href="ky-unemployment/">KY Unemployment Rates</a></li>
-            <li>Data Source: <a href="http://www.bls.gov/data/">Bureau of Labor Statistics</a></li>
-            <li>See the <a href="https://github.com/annaleebard/geo409/blob/master/map-04/index.html">code for this map hosted on GitHub</a></li>
+        <a target="_blank" href="points.ky/">
+            <image src="images/chickenmapzoom.png" alt="Kentucky Kicks Ass" class="project-image" />
+        </a>
+        <h3><a target="_blank" href="points.ky">Kentucky Kicks Ass</a></h3>
+
+
+        <p> </p>
+        <p>Click each piece of fried chicken to read the tweet text and time stamp.</p>
+
+        <ul>
+            <li>See the map: <a href="points.ky">Kentucky Kicks Ass</a>
+            </li>
+            <li>Data Source: <a href="https://twitter.com/mattzook/status/567484025884119042">Kentucky State Geographer: Matthew Zook </a>
+            </li>
+            <li>See the <a href="https://github.com/annaleebard/geo409/">code for this map hosted on GitHub</a>
+            </li>
         </ul>
-    </section>  
+
+    </section>
     
-    <section class = "project">
-         
-       <a target="_blank" href="us-power-plants/"><image src="images/Power.plants.us2.png" alt="US Power Plants"class="project-image" /></a>
+    
+    
+ <section class="project">
+
+        <a target="_blank" href="us-power-plants/">
+            <image src="images/Power.plants.us2.png" alt="US Power Plants" class="project-image" />
+        </a>
         <h3><a target="_blank" href="us-power-plants/">United States Power Plant Production and Fuel Sources </a></h3>
-        
+
         <p>This thematic proportional symobl map shows power plants across the United States.</p>
         <p>Generation of energy in the US symbolized with proprotional circles. Circles are sized with respect to each plant's annual net generation of power. Hydropower generation symbolized with blue circles. Wind power symbolized with red circles. Coal power generation symbolized with yellow circles. Natural gas symbolized with green circles. User may toggle on or off any of the fuel source layers. Clicking on the map eliminates all power plants that are more than 500km from the click point. Double clicking on the map eliminates all power plants that are more than 200km from the click point. User may click on the circles to view additional information about the individual power plant. </p>
-        
-        <ul> 
-            <li>See the map: <a href="us-power-plants/">US Power Plant Fuel Sources</a></li>
-            <li>Data Source: <a href="http://www.eia.gov/">U.S. Energy Information Administration</a></li>
-            <li>See the <a href="https://github.com/annaleebard/geo409/blob/master/map-03/index.html">code for this map hosted on GitHub</a></li>
+
+        <ul>
+            <li>See the map: <a href="us-power-plants/">US Power Plant Fuel Sources</a>
+            </li>
+            <li>Data Source: <a href="http://www.eia.gov/">U.S. Energy Information Administration</a>
+            </li>
+            <li>See the <a href="https://github.com/annaleebard/geo409/blob/master/map-03/index.html">code for this map hosted on GitHub</a>
+            </li>
         </ul>
-                </section>    
+    </section>
     
-    
-    <section class = "project">
-         
-       <a target="_blank" href="http://www.kentuckyforkentucky.com/pages/projects/"><image src="images/ky.print.map.png" alt="All Things Kentucky"class="project-image" /></a>
-        <h3><a target="_blank" href="http://www.kentuckyforkentucky.com/pages/projects">All Things Kentucky! </a></h3>     
-        
-        <p> Coming soon... this map will use geocoded tweets to visualize location of kentucky related activity.</p>
-        <p></p>
-        
-        <ul> 
-            <li>See the map: <a href="http://www.kentuckyforkentucky.com/pages/projects">All Things Kentucky</a></li>
-            <li>Data Source: <a href="https://twitter.com/mattzook/status/567484025884119042">Kentucky State Geographer: Matthew Zook </a></li>
-            <li>See the <a href="https://github.com/annaleebard">code for this map hosted on GitHub</a></li>
+    <section class="project">
+
+        <a target="_blank" href="us-unemployment/">
+            <image src="images/us.unemployment.png" alt="US unemployment map" class="project-image" />
+        </a>
+        <h3><a target="_blank" href="us-unemployment/">US Unemployment Rates: 2001 &ndash; 2013</a></h3>
+
+
+        <p> This choropleth map shows unemployment rates in the United States for years ranging 2001 to 2013.</p>
+        <p>Click and drag time slider to select unemployment rates from the range of years.</p>
+
+        <ul>
+            <li>See the map: <a href="us-unemployment/">US Unemployment Rates</a>
+            </li>
+            <li>Data Source: <a href="http://www.bls.gov/data/">Bureau of Labor Statistics</a>
+            </li>
+            <li>See the <a href="https://github.com/annaleebard/geo409/blob/master/map-04/index.html">code for this map hosted on GitHub</a>
+            </li>
         </ul>
-                </section>  
-    
+
+    </section>
+
+
+    <section class="project">
+
+        <a target="_blank" href="ky-unemployment/">
+            <image src="images/ky.unemployment.png" alt="KY unemployment map" class="project-image" />
+        </a>
+        <h3><a target="_blank" href="ky-unemployment/">Kentucky Unemployment Rates: 2000 &ndash; 2013</a></h3>
+
+        <p> This choropleth map shows unemployment rates in the Commonwealth of Kentucky by county for years ranging 2000 to 2013.</p>
+        <p>Click and drag time slider to select unemployment rates from the range of years. Click on a county to display county name and unemployment rate for selected year. Hover over a Kentucky county to display infobox containing unemployment rates of selcected count from 2000 to 2013.</p>
+
+        <ul>
+            <li>See the map: <a href="ky-unemployment/">KY Unemployment Rates</a>
+            </li>
+            <li>Data Source: <a href="http://www.bls.gov/data/">Bureau of Labor Statistics</a>
+            </li>
+            <li>See the <a href="https://github.com/annaleebard/geo409/blob/master/map-04/index.html">code for this map hosted on GitHub</a>
+            </li>
+        </ul>
+    </section>
+
+   
+
+
+
+
 </body>
+
 </html>
