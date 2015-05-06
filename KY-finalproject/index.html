@@ -5,13 +5,14 @@
     <meta charset=utf-8 />
     <title>KY</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-
+   
     <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
     <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
     <script src="simple_statistics.js"></script>
 
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
     <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+
 
     <style>
         body {
@@ -131,7 +132,8 @@
         #fr {
             float: right
         }
-         #frl {
+        
+        #frl {
             float: left
         }
     </style>
@@ -186,6 +188,8 @@
         // load map tiles and add to map
         map.addLayer(tiles);
 
+    
+        
         // set global variables for map layer, 
         // mapped attribute, and normalizing attribute
         var countyLayer;
@@ -204,10 +208,10 @@
             "chicken": "Kentucky Fried Chicken",
             "bbn": "BBN",
             "unspirit": "Unbridled Spirit",
-            "kykicksass" : "Kentucky Kicks Ass",
-            "ku4ky" : "Kentucky for Kentucky",
-            "total" : "Total Kentucky Tweets"
-            
+            "kykicksass": "Kentucky Kicks Ass",
+            "ku4ky": "Kentucky for Kentucky",
+            "total": "Total Kentucky Tweets"
+
         }
 
         //give variables to different geometry layers
@@ -217,7 +221,7 @@
         var activeLayer; // to hold the currently active layer
 
         // AJAX call to load hexbin-level data
-        $.getJSON("US_County_Tweets.json", function (data) {
+        $.getJSON("US_County_Tweets505.json", function (data) {
 
             // create Leaflet data layer and add to map
             countyLayer = L.geoJson(data, {
@@ -236,7 +240,7 @@
 
             layerToggle['Counties'] = countyLayer
 
-            $.getJSON("US_State_Tweets.json", function (data) {
+            $.getJSON("US_State_Tweets506.json", function (data) {
                 stateLayer = L.geoJson(data, {
                     style: function (feature) {
                         // style hex with initial default path options
@@ -245,7 +249,7 @@
                             fillColor: 'white',
                             weight: 2,
                             fillOpacity: .8,
-                            
+
 
                         };
                     }
@@ -256,7 +260,7 @@
                 $.getJSON("hex505.json", function (data) {
                     hexbinLayer = L.geoJson(data, {
                         style: function (feature) {
-                            
+
                             // style hex with initial default path options
                             //draws and styles the polygons 
                             return {
@@ -304,63 +308,50 @@
             // loop through each polygon
             l.eachLayer(function (layer) {
 
-               
+
                 {
-                    if (layer.feature.properties[attribute] != 0 ) {
-                    // set the layer fill and stroke to true and colorize
-                    layer.setStyle({
-                        fill: true,
-                        stroke: true,
-                        fillColor: getColor(layer.feature.properties[attribute] /
-                            layer.feature.properties[norm], breaks)
-                        
-                    });
-                        
-                } else if ((activeLayer ==hexbinLayer) && (layer.feature.properties[attribute] == 0))  {
-                    layer.setStyle({
-                        fill: false,
-                        stroke: false,
-                    });
-                }   
-                    else {
-                    layer.setStyle({
-                        fill: true, 
-                        stroke: true,
-                        fillColor: 'gray',
-                        
-                     }); 
-                    
-                } 
+                    if (layer.feature.properties[attribute] != 0) {
+                        // set the layer fill and stroke to true and colorize
+                        layer.setStyle({
+                            fill: true,
+                            stroke: true,
+                            fillColor: getColor(layer.feature.properties[attribute] /
+                                layer.feature.properties[norm], breaks)
+
+                        });
+
+                    } else if ((activeLayer == hexbinLayer) && (layer.feature.properties[attribute] == 0)) {
+                        layer.setStyle({
+                            fill: false,
+                            stroke: false,
+                        });
+                    } else {
+                        layer.setStyle({
+                            fill: true,
+                            stroke: true,
+                            fillColor: 'black',
+
+                        });
+                    }
                 }
-                
-     
-                        
-//                if(activeLayer != hexbinLayer) {
-//                    layer.setStyle({
-//                        fill:true,
-//                        stroke:true,
-//                        fillColor: getColor(layer.feature.properties[attribute] /
-//                            layer.feature.properties[norm], breaks)
-//                    });
-                        
-                
+
                 // bind a popup to layer with county-specific information
                 //console.log(props)
                 //console.log(activeLayer);
-                
+
                 //create conditional statements to customize popups for each layer
                 if (activeLayer == hexbinLayer) {
-                  layer.bindPopup(labels[attribute]  +" tweets from this hexagon"+ " : " + ((layer.feature.properties[attribute])).toLocaleString());
-                } else if(activeLayer == countyLayer) {
+                    layer.bindPopup(labels[attribute] + " tweets from this hexagon" + " : " + ((layer.feature.properties[attribute])).toLocaleString());
+                } else if (activeLayer == countyLayer) {
                     layer.bindPopup(labels[attribute] + " tweets from " + layer.feature.properties["NAME"] + " County : " + ((layer.feature.properties[attribute])).toLocaleString());
-                } else  {
+                } else {
                     layer.bindPopup(labels[attribute] + " tweets from " + layer.feature.properties["NAME"] + " : " + ((layer.feature.properties[attribute])).toLocaleString());
                 }
-                
 
-                    
-                    
-//                layer.bindPopup(labels[attribute] + " tweets from " + layer.feature.properties["NAME"] + " : " + ((layer.feature.properties[attribute])).toLocaleString());
+
+
+
+                //                layer.bindPopup(labels[attribute] + " tweets from " + layer.feature.properties["NAME"] + " : " + ((layer.feature.properties[attribute])).toLocaleString());
 
                 // on mousing over layer
                 layer.on('mouseover', function () {
@@ -370,17 +361,41 @@
 
                     // change the stroke color and bring that element to the front
                     layer.setStyle({
-                        color: 'yellow'
+                        fill: 'yellow',
+                        stroke: false,
+                        fillColor: "#ff0033",
+                        
                     }).bringToFront();
                 });
 
                 // on mousing off layer
                 layer.on('mouseout', function () {
 
-                    // reset the layer style to its original stroke color
-                    layer.setStyle({
-                        color: 'blue',
-                    });
+                   {
+                    if (layer.feature.properties[attribute] != 0) {
+                        // set the layer fill and stroke to true and colorize
+                        layer.setStyle({
+                            fill: true,
+                            stroke: true,
+                            fillColor: getColor(layer.feature.properties[attribute] /
+                                layer.feature.properties[norm], breaks)
+
+                        });
+
+                    } else if ((activeLayer == hexbinLayer) && (layer.feature.properties[attribute] == 0)) {
+                        layer.setStyle({
+                            fill: false,
+                            stroke: false,
+                        });
+                    } else {
+                        layer.setStyle({
+                            fill: true,
+                            stroke: true,
+                            fillColor: 'black',
+
+                        });
+                    }
+                }
                 });
             });
 
@@ -398,6 +413,7 @@
             // update the legend with the current data attribute information
             updateLegend(breaks);
 
+                
         }
 
         function getClassBreaks(l) {
@@ -441,7 +457,7 @@
                 return '#238b45'
             } else if (d <= breaks[5]) {
                 return '#005a32'
-            } 
+            }
         }
 
         function drawLegend() {
@@ -469,7 +485,7 @@
         function updateLegend(breaks) {
 
             // select the legend, add a title, begin an unordered list and assign to a variable
-            var legend = $('.legend').html("<h3>" +  "<span id='frl'>a few tweets</span>" + "<span id='fr'>lots of tweets</span>" + "</h3><ul>");
+            var legend = $('.legend').html("<h3>" + "<span id='frl'>a few tweets</span>" + "<span id='fr'>lots of tweets</span>" + "</h3><ul>");
 
             // loop through the Array of classification break values
             for (var i = 0; i < breaks.length - 1; i++) {
@@ -567,6 +583,8 @@
             // insert HTML content into empty info panel
             $(".info").html(html);
         }
+
+   
     </script>
 
 </body>
