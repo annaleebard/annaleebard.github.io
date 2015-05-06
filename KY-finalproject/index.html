@@ -5,7 +5,7 @@
     <meta charset=utf-8 />
     <title>KY</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-   
+
     <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
     <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
     <script src="simple_statistics.js"></script>
@@ -136,6 +136,21 @@
         #frl {
             float: left
         }
+        .leaflet-control-layers-toggle:after{ 
+            content:"Hover to choose a layer"; 
+            color:#000 ;
+}   
+.leaflet-control-layers-toggle{ 
+    width:auto;
+    background-position:3px 50% ;
+    padding:3px;
+    padding-left:36px;
+    text-decoration:none;
+    line-height:36px;
+
+}
+</style>
+        
     </style>
 </head>
 
@@ -143,7 +158,7 @@
 
     <header>
         <h1>All Things Kentucky</h1>
-        <h2></h2>
+        
     </header>
     <div id='ui-controls'>
         <label>Choose a data attribute:
@@ -166,6 +181,7 @@
         </label>
     </div>
     <div id='map'></div>
+    
 
     <script>
         // initial map options, disabling pan/zoom
@@ -178,18 +194,15 @@
             zoomControl: true
         }
         var map = L.map('map', options);
-
         var tiles = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
             subdomains: 'abcd',
             maxZoom: 19
         });
-
         // load map tiles and add to map
         map.addLayer(tiles);
 
-    
-        
+
         // set global variables for map layer, 
         // mapped attribute, and normalizing attribute
         var countyLayer;
@@ -197,6 +210,7 @@
         var stateLayer;
         attribute = "bourbon",
             norm = "norm";
+
 
         // create object to hold legend titles
         var labels = {
@@ -211,18 +225,18 @@
             "kykicksass": "Kentucky Kicks Ass",
             "ku4ky": "Kentucky for Kentucky",
             "total": "Total Kentucky Tweets"
-
         }
 
-        //give variables to different geometry layers
 
+        //give variables to different geometry layers
         // layerControl object
         var layerToggle = {};
         var activeLayer; // to hold the currently active layer
-
         // AJAX call to load hexbin-level data
-        $.getJSON("US_County_Tweets505.json", function (data) {
 
+
+
+        $.getJSON("US_County_Tweets505.json", function (data) {
             // create Leaflet data layer and add to map
             countyLayer = L.geoJson(data, {
                 style: function (feature) {
@@ -233,13 +247,12 @@
                         weight: .7,
                         fillOpacity: 1,
                         stroke: "black",
-
                     };
                 }
             })
 
-            layerToggle['Counties'] = countyLayer
 
+            layerToggle['Counties'] = countyLayer
             $.getJSON("US_State_Tweets506.json", function (data) {
                 stateLayer = L.geoJson(data, {
                     style: function (feature) {
@@ -249,40 +262,44 @@
                             fillColor: 'white',
                             weight: 2,
                             fillOpacity: .8,
-
-
                         };
                     }
                 })
 
-                layerToggle['States'] = stateLayer
 
+                layerToggle['States'] = stateLayer
                 $.getJSON("hex505.json", function (data) {
                     hexbinLayer = L.geoJson(data, {
                         style: function (feature) {
-
                             // style hex with initial default path options
                             //draws and styles the polygons 
                             return {
                                 fillColor: 'white',
                                 weight: .7,
                                 fillOpacity: 1,
-
-
                             };
                         }
                     })
+
+
                     layerToggle['Hexbin'] = hexbinLayer
                     L.control.layers(layerToggle).addTo(map);
+
                     // add this point you know for sure all three geojsons are loaded
 
+
                     // make the state layer default
+
                     stateLayer.addTo(map);
+
                     activeLayer = stateLayer;
+
                     drawMap(activeLayer);
+
                     ui();
                 })
             })
+
 
             map.on('baselayerchange', function (e) {
                 // layer has changed. draw map with new layer
@@ -291,24 +308,31 @@
             });
 
 
-
             drawLegend(); // draw the legend
-            ui();
-            drawInfo(); // draw the info panel
-            drawMap();
 
+            ui();
+
+            drawInfo(); // draw the info panel
+
+            drawMap();
         });
+
+
+
+
 
         function drawMap(l) {
 
+            
 
             // get the class breaks for the initial data attribute
+
             var breaks = getClassBreaks(l);
 
             // loop through each polygon
+
+
             l.eachLayer(function (layer) {
-
-
                 {
                     if (layer.feature.properties[attribute] != 0) {
                         // set the layer fill and stroke to true and colorize
@@ -317,7 +341,6 @@
                             stroke: true,
                             fillColor: getColor(layer.feature.properties[attribute] /
                                 layer.feature.properties[norm], breaks)
-
                         });
 
                     } else if ((activeLayer == hexbinLayer) && (layer.feature.properties[attribute] == 0)) {
@@ -325,95 +348,103 @@
                             fill: false,
                             stroke: false,
                         });
+
                     } else {
                         layer.setStyle({
                             fill: true,
                             stroke: true,
                             fillColor: 'black',
-
                         });
                     }
                 }
-
                 // bind a popup to layer with county-specific information
                 //console.log(props)
                 //console.log(activeLayer);
-
                 //create conditional statements to customize popups for each layer
+
                 if (activeLayer == hexbinLayer) {
+
                     layer.bindPopup(labels[attribute] + " tweets from this hexagon" + " : " + ((layer.feature.properties[attribute])).toLocaleString());
+
                 } else if (activeLayer == countyLayer) {
+
                     layer.bindPopup(labels[attribute] + " tweets from " + layer.feature.properties["NAME"] + " County : " + ((layer.feature.properties[attribute])).toLocaleString());
+
                 } else {
+
                     layer.bindPopup(labels[attribute] + " tweets from " + layer.feature.properties["NAME"] + " : " + ((layer.feature.properties[attribute])).toLocaleString());
                 }
-
-
-
-
                 //                layer.bindPopup(labels[attribute] + " tweets from " + layer.feature.properties["NAME"] + " : " + ((layer.feature.properties[attribute])).toLocaleString());
-
                 // on mousing over layer
+
+
+
                 layer.on('mouseover', function () {
 
                     // update the info panel
+
                     updateInfo(this);
 
                     // change the stroke color and bring that element to the front
+
                     layer.setStyle({
                         fill: 'yellow',
                         stroke: false,
                         fillColor: "#ff0033",
-                        
+
                     }).bringToFront();
                 });
 
+
+
                 // on mousing off layer
                 layer.on('mouseout', function () {
+                    {
+                        if (layer.feature.properties[attribute] != 0) {
+                            // set the layer fill and stroke to true and colorize
+                            layer.setStyle({
+                                fill: true,
+                                stroke: true,
+                                fillColor: getColor(layer.feature.properties[attribute] /
+                                    layer.feature.properties[norm], breaks)
+                            });
 
-                   {
-                    if (layer.feature.properties[attribute] != 0) {
-                        // set the layer fill and stroke to true and colorize
-                        layer.setStyle({
-                            fill: true,
-                            stroke: true,
-                            fillColor: getColor(layer.feature.properties[attribute] /
-                                layer.feature.properties[norm], breaks)
+                        } else if ((activeLayer == hexbinLayer) && (layer.feature.properties[attribute] == 0)) {
+                            layer.setStyle({
+                                fill: false,
+                                stroke: false,
+                            });
 
-                        });
-
-                    } else if ((activeLayer == hexbinLayer) && (layer.feature.properties[attribute] == 0)) {
-                        layer.setStyle({
-                            fill: false,
-                            stroke: false,
-                        });
-                    } else {
-                        layer.setStyle({
-                            fill: true,
-                            stroke: true,
-                            fillColor: 'black',
-
-                        });
+                        } else {
+                            layer.setStyle({
+                                fill: true,
+                                stroke: true,
+                                fillColor: 'black',
+                            });
+                        }
                     }
-                }
                 });
             });
 
 
+
             // when mousing over the map
+
             l.on('mouseover', function () {
                 $(".info").show(); // display the info panel
             });
 
             // when mousing off the map
+
             l.on('mouseout', function () {
                 $(".info").hide(); // hide the info panel 
             });
-
             // update the legend with the current data attribute information
             updateLegend(breaks);
+            
+            
+            
 
-                
         }
 
         function getClassBreaks(l) {
@@ -421,32 +452,32 @@
             // create empty Array for storing values
             var values = [];
 
+
             // loop through all the counties
             l.eachLayer(function (layer) {
                 props = layer.feature.properties
-                    //console.log(props);
+
+                //console.log(props);
+
                 if (props[norm] == 0) props[norm] = 1
 
                 var value = layer.feature.properties[attribute] / layer.feature.properties[norm];
+
                 values.push(+value); // push the normalized value for each layer into the Array
                 //console.log(values)
-
             });
 
             var breaks = ss.jenks(values, 5); // determine the class breaks
             return breaks; // return Array of class breaks
-
-
         }
 
 
 
-        function getColor(d, breaks) {
 
+        function getColor(d, breaks) {
             // function accepts a single normalized data attribute value 
             // and uses a series of conditional statements to determine which 
             // which color value to return to return to the function caller
-
             if (d <= breaks[1]) {
                 return '#a1d99b';
             } else if (d <= breaks[2]) {
@@ -460,111 +491,92 @@
             }
         }
 
-        function drawLegend() {
 
+
+
+        function drawLegend() {
             // create a new Leaflet control object, and position it top left
             var legend = L.control({
                 position: 'bottomright'
             });
-
             // when the legend is added to the map
             legend.onAdd = function (map) {
-
                 // create a div element with an class attribute of legend
                 var div = L.DomUtil.create('div', 'legend');
-
                 // return the div to the method
                 return div;
-
             };
-
             // add the empty legend div to the map
             legend.addTo(map);
         }
 
-        function updateLegend(breaks) {
 
+
+
+        function updateLegend(breaks) {
             // select the legend, add a title, begin an unordered list and assign to a variable
             var legend = $('.legend').html("<h3>" + "<span id='frl'>a few tweets</span>" + "<span id='fr'>lots of tweets</span>" + "</h3><ul>");
-
             // loop through the Array of classification break values
             for (var i = 0; i < breaks.length - 1; i++) {
-
                 // get a color value for each
                 var color = getColor(breaks[i + 1], breaks);
-
                 // append a list item to the legend
                 legend.append('<li><span style="background:' + color + '"></span> ' + '</li>');
             }
-
             // close the legend's unordered list
             legend.append("</ul>");
         }
 
 
 
-        function ui() {
 
+        function ui() {
             // create a new Leaflet control Object and assign to a variable
             var dataView = L.control({
                 position: 'bottomright'
             });
-
             // when the control is added to the map
             dataView.onAdd = function (map) {
-
-                // select an existing DOM element with id of 'ui-controls'
-                var controls = L.DomUtil.get('ui-controls');
-
-                // return that element to the method
-                return controls;
-            }
-
-            // add the control to the map
+                    // select an existing DOM element with id of 'ui-controls'
+                    var controls = L.DomUtil.get('ui-controls');
+                    // return that element to the method
+                    return controls;
+                }
+                // add the control to the map
             dataView.addTo(map);
-
             // select the dropdown element and listen for a change
             $('select[name="bourbon"]').change(function () {
-
                 // re-assign the value based off user's selection
                 attribute = $(this).val();
-
                 // update the map
                 drawMap(activeLayer);
-
             });
         }
 
-        function drawInfo() {
 
+
+
+        function drawInfo() {
             // create a new Leaflet control object and position bottom left
             var info = L.control({
                 position: 'bottomleft'
             });
-
             // when adding control to map
             info.onAdd = function (map) {
-
-                // create a new div with class of info
-                var div = L.DomUtil.create('div', 'info');
-
-                // return div to control object
-                return div;
-
-            }
-
-            // add the empty info div to the map
+                    // create a new div with class of info
+                    var div = L.DomUtil.create('div', 'info');
+                    // return div to control object
+                    return div;
+                }
+                // add the empty info div to the map
             info.addTo(map);
-
             // select the info panel and hide it
             $(".info").hide();
         }
 
         function updateInfo(layer) {
-
             // create shortcut for accessing properties
             var props = layer.feature.properties;
-
             // build an HTML string of relevant information about that polygon
             var html =
                 "<b>Total # Kentucky related tweets: " + props["total"] + "</b><br>" +
@@ -579,12 +591,9 @@
                 "# of Kentucky Kicks Ass tweets: <b>" + props["kykicksass"] + "</b><br>" +
                 "# of Unbridled Spirit tweets: <b>" + props["unspirit"] + "</b><br>" +
                 "# of Kentucky for Kentucky tweets: <b>" + props["ky4ky"] + "</b>"
-
-            // insert HTML content into empty info panel
+                // insert HTML content into empty info panel
             $(".info").html(html);
         }
-
-   
     </script>
 
 </body>
