@@ -149,6 +149,32 @@
     line-height:36px;
 
 }
+        #loader {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: rgba(245, 245, 245, 0.7);
+            z-index: 200;
+        }
+        
+/*       since we know the height/width of the loader gif, 
+         position absolutely and use top/left, subtracting half of 
+         width and heigth using margin */
+        #loader img {
+            width: 66px;
+            height: 66px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -33px 0 0 -33px;
+        }
+          .logo {
+            width: 175px;
+            height: 100px;
+        }
+
+        
 </style>
         
     </style>
@@ -157,7 +183,7 @@
 <body>
 
     <header>
-        <h1>All Things Kentucky</h1>
+        <h1>All Tweets Kentucky!</h1>
         
     </header>
     <div id='ui-controls'>
@@ -181,6 +207,14 @@
         </label>
     </div>
     <div id='map'></div>
+     <!--    loader div with opaque background-->
+        <div id='loader'>
+<!--        animated gif of spinning loader-->
+            <img src='loader.gif' alt='loader' />
+        </div>
+      </div>
+
+
     
 
     <script>
@@ -290,9 +324,9 @@
 
                     // make the state layer default
 
-                    stateLayer.addTo(map);
+                    hexbinLayer.addTo(map);
 
-                    activeLayer = stateLayer;
+                    activeLayer = hexbinLayer;
 
                     drawMap(activeLayer);
 
@@ -323,7 +357,7 @@
 
         function drawMap(l) {
 
-            
+            $("#loader").show();
 
             // get the class breaks for the initial data attribute
 
@@ -388,9 +422,9 @@
                     // change the stroke color and bring that element to the front
 
                     layer.setStyle({
-                        fill: 'yellow',
-                        stroke: false,
-                        fillColor: "#ff0033",
+                        fill: 'blue',
+                        stroke: true,
+                        fillColor: "yellow",
 
                     }).bringToFront();
                 });
@@ -442,7 +476,8 @@
             // update the legend with the current data attribute information
             updateLegend(breaks);
             
-            
+             $("#loader").hide();
+
             
 
         }
