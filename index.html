@@ -22,7 +22,6 @@
 			margin: 0 auto;
 			background: firebrick;
 			padding: 20px 10px;
-			
 		}
 		
 		h1 {
@@ -34,10 +33,9 @@
 		
 		h2 {
 			font-family: 'Roboto', sans-serif;
-			color:snow;
+			color: snow;
 			width: 80%;
 			margin: 0 auto;
-			
 		}
 		
 		h3 {
@@ -55,7 +53,6 @@
 			font-size: .9em;
 			color: snow;
 			line-height: 1.6em;
-			
 		}
 		
 		a,
@@ -87,17 +84,30 @@
 		
 		.project-image2 {
 			width: 388px;
-			height: 330px;
+			height: 269px;
 			background: white;
 			float: left;
 			margin-right: 20px;
 			border: 2px solid snow;
 		}
 		
-		
+		.project-image3 {
+			width: 388px;
+			height: 298px;
+			background: white;
+			float: left;
+			margin-right: 20px;
+			border: 2px solid snow;
+		}
+		.project-image4 {
+			width: 388px;
+			height: 298px;
+			background: white;
+			float: left;
+			margin-right: 20px;
+			border: 2px solid snow;
+		}
 	</style>
-
-
 
 </head>
 
@@ -109,8 +119,8 @@
 		<h1>Anna Lee Espinosa Bard</h1>
 		<h2> Web Map Portfolio</h2>
 	</header>
-	
-	
+
+
 	<section class="project">
 
 		<a target="_blank" href=KY-finalproject>
@@ -173,28 +183,50 @@
 		</ul>
 	</section>
 
+
 	<section class="project">
-
-		<a target="_blank" href="us-unemployment/">
-			<image src="images/us.unemployment.png" alt="US unemployment map" class="project-image" />
-		</a>
-		<h3><a target="_blank" href="us-unemployment/">US Unemployment Rates: 2001 &ndash; 2013</a></h3>
-
-
-		<p> This choropleth map shows unemployment rates in the United States for years ranging 2001 to 2013.</p>
-		<p>Click and drag time slider to select unemployment rates from the range of years.</p>
-
+		<a target="_blank" href="images/US.breweries.pdf">
+			<image src="images/brewerydensity.png" alt="United States Brewery Density Map" class="project-image3" /> </a>
+		<h3> <a target= "_blank" href="images/US.breweries.pdf"> Brewery Density across North America</a></h3>
+		<p> This map was developed using QGIS employing points in polygon analysis to aggregate the number of breweries to 45km diameter hexagons. Seattle Washington is highlighted as it home to one of the top 5 areas with the greatest brewery density. </p>
 		<ul>
-			<li>See the map: <a href="us-unemployment/">US Unemployment Rates</a>
+			<li>See the map: <a target="_blank" href="images/US.breweries.pdf"> Brewery Density across North America</a>
 			</li>
-			<li>Data Source: <a href="http://www.bls.gov/data/">Bureau of Labor Statistics</a>
+			<li>Data Source: <a href="http://www.poi-factory.com/">POI Factory</a>
 			</li>
-			<li>See the <a href="https://github.com/annaleebard/geo409/blob/master/map-04/index.html">code for this map hosted on GitHub</a>
+			<li>CRS: North America Albers Equal Area Conic
 			</li>
 		</ul>
-
 	</section>
 
+	<section class="project">
+		<a target="_blank" href="https://annaleebard.cartodb.com/viz/e0fb9e7c-a1cf-11e5-b8fa-0e674067d321/map">
+			<image src="images/aging.ky.population.jpg" alt="Aging Population of Kentucky" class="project-image" /> </a>
+		<h3> <a target= "_blank" href="https://annaleebard.cartodb.com/viz/e0fb9e7c-a1cf-11e5-b8fa-0e674067d321/map">Aging Population by Kentucky Census Tract</a></h3>
+		<p> According to the Administration for Community Living there will 98 million older persons living in the US in 2060, twice the number of 2013. This map identifies the concentrations of older populations in Kentucky and access to major hospitals. Knowing where older people live helps us plan for resource development and increased support as the the aging in place population grows.  </p>
+		<ul>
+			<li>See the map: <a target="_blank" href="https://annaleebard.cartodb.com/viz/e0fb9e7c-a1cf-11e5-b8fa-0e674067d321/map"> Aging Population by Kentucky Census Tract</a>
+			</li>
+			
+			<li>Demographic data: <a href="http://www.census.gov/"> 2010-2014 American Community Survey 5-Year Estimates</a> 
+			</li>
+
+			<li>Demographic data:<a Hospital Locations: href="http://chfs.ky.gov/ "> Kentucky Cabinet for Health and Family Services</a>
+			</li>
+
+		</ul>
+	</section>
+	<!--
+		<section class="project">
+			<iframe width="100%" height=500px name="LENA_Sample" frameborder="0" src="https://annaleebard.cartodb.com/viz/0a2709a4-df05-11e5-9467-0ef7f98ade21/embed_map" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+			<p><a href="https://annaleebard.cartodb.com/viz/0a2709a4-df05-11e5-9467-0ef7f98ade21/embed_map" target="LENA_Sample">Click here for full screen map.</a>
+			</p>
+		</section>
+	-->
+
+
+	<!--
 	<section class="project">
 
 		<a target="_blank" href="points.ky/">
@@ -214,13 +246,31 @@
 			</li>
 		</ul>
 	</section>
-
+-->
+	<!--
 	<section class="project">
-		<iframe width="100%" height=500px name="LENA_Sample" frameborder="0" src="https://annaleebard.cartodb.com/viz/0a2709a4-df05-11e5-9467-0ef7f98ade21/embed_map" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
 
-		<p><a href="https://annaleebard.cartodb.com/viz/0a2709a4-df05-11e5-9467-0ef7f98ade21/embed_map" target="LENA_Sample">Click here for full screen map.</a>
-		</p>
+		<a target="_blank" href="us-unemployment/">
+			<image src="images/us.unemployment.png" alt="US Unemployment Map" class="project-image" />
+		</a>
+		<h3><a target="_blank" href="us-unemployment/">US Unemployment Rates: 2001 &ndash; 2013</a></h3>
+
+
+		<p> This choropleth map shows unemployment rates in the United States for years ranging 2001 to 2013.</p>
+		<p>Click and drag time slider to select unemployment rates from the range of years.</p>
+
+		<ul>
+			<li>See the map: <a href="us-unemployment/">US Unemployment Rates</a>
+			</li>
+			<li>Data Source: <a href="http://www.bls.gov/data/">Bureau of Labor Statistics</a>
+			</li>
+			<li>See the <a href="https://github.com/annaleebard/geo409/blob/master/map-04/index.html">code for this map hosted on GitHub</a>
+			</li>
+		</ul>
+
 	</section>
+-->
+
 
 
 
